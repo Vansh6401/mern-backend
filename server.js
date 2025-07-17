@@ -20,13 +20,10 @@ const dbpass = encodeURIComponent(process.env.DBPASS);
 
 mongoose
   .connect(
-    `mongodb+srv://${dbuser}:${dbpass}@cluster0.ivvaoj5.mongodb.net/merncafe?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://${dbuser}:${dbpass}@cluster0.ivvaoj5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
   )
-  .then(() => {
-    app.listen(8080, () => {
-      console.log("Server started");
-    });
-  });
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
