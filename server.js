@@ -18,12 +18,18 @@ const dbpass = encodeURIComponent(process.env.DBPASS);
 //   });
 // });
 
-mongoose
-  .connect(
-    `mongodb+srv://${dbuser}:${dbpass}@cluster0.ivvaoj5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-  )
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// mongoose
+//   .connect(
+//     `mongodb+srv://${dbuser}:${dbpass}@cluster0.ivvaoj5.mongodb.net/merncafe?retryWrites=true&w=majority&appName=Cluster0`
+//   )
+//   .then(() => console.log("MongoDB connected"))
+//   .catch((err) => console.error("MongoDB connection error:", err));
+
+  mongoose.connect(`mongodb+srv://${dbuser}:${dbpass}@cluster0.ivvaoj5.mongodb.net/merncafe?retryWrites=true&w=majority&appName=Cluster0`).then(() => {
+  app.listen(8080, () => {
+    console.log("Server started");
+  });
+});
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
